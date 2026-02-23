@@ -7,4 +7,4 @@ This document demonstrates how to retrieve Book records from the database using 
 ```python
 from bookshelf.models import Book
 
-Book.objects.all()
+Book.objects.get "1984"()
