@@ -8,7 +8,7 @@ This document demonstrates how to update an existing Book record using Django OR
 from bookshelf.models import Book
 
 book = Book.objects.get(id=1)
-book.published_year = 1950
+book.title, "Nineteen Eighty-Four"
 book.save()
 
 book
