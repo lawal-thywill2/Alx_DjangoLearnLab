@@ -18,10 +18,3 @@ class LibraryDetailView(DetailView):
   """A class-based view for displaying details of a specific library."""
   model = Library
   template_name = 'relationship_app/library_detail.html'
-
-  def get_context_data(self, **kwargs):
-    """Injects additional context data specific to the book."""
-    context = super().get_context_data(**kwargs)  # Get default context data
-    library = self.get_object()  # Retrieve the current library instance
-    context['library'] = library
-    return context
