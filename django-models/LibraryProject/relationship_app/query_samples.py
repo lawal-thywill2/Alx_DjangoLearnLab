@@ -15,7 +15,7 @@ for book in books_by_author:
     print(book.title)
 
 # 2. List all books in a library
-library =Library.objects.get(name='library_name')
+library =Library.objects.get(name="library_name")
 books_in_library = library.books.all()
 
 print(f"\nBooks in {library.name}:")
@@ -25,5 +25,5 @@ for book in books_in_library:
 # 3. Retrieve the librarian for a library
 librarian = Librarian.objects.get(library=library)
 
-print("\nLibrarian of Central Library:")
+print(f"\nLibrarian of {library.name}:")
 print(librarian.name)
