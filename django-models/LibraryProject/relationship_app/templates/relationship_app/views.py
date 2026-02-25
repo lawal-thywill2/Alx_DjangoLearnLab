@@ -58,7 +58,7 @@ def register_view(request):
 
     return render(request, 'relationship_app/register.html')
 
-def login_view(request):
+def loginview(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -71,6 +71,6 @@ def login_view(request):
             return redirect('login')
     return render(request, 'relationship_app/login.html')
 
-def logout_view(request):
+def logoutview(request):
     logout(request)
     return redirect('login')
