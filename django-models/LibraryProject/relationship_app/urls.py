@@ -1,10 +1,11 @@
-from django.contrib import admin
-from django.urls import  path
-
-from LibraryProject.relationship_app import views
-from .views import list_books, LibraryDetailView
+from django.urls import path
+from . import views
 
 urlpatterns = [
-     path('book/', list_books, name='list_books'),
-     path('library_detail/', LibraryDetailView.as_view(), name='library_detail'),
+    path('', views.home, name='home'),  # your home page
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('register/', views.register_view, name='register'),
+    path('library/', views.LibraryDetailView.as_view(), name='library_detail'),
+    path('books/', views.list_books, name='list_books'),
 ]
