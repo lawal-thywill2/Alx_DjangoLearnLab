@@ -10,11 +10,11 @@ def book_list(request):
       return render(request, 'relationship_app/list_books.html', context)
 
 from django.views.generic import DetailView
-from .models import Book
+from .models import Library
 
 class BookDetailView(DetailView):
   """A class-based view for displaying details of a specific book."""
-  model = Book
+  model = Library
   template_name = 'relationship_app/library_detail.html'
 
   def get_context_data(self, **kwargs):
