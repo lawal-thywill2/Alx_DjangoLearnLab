@@ -6,7 +6,7 @@ from .models import Book
 def list_books(request):
       """Retrieves all books and renders a template displaying the list."""
       books = Book.objects.all()  # Fetch all book instances from the database
-      context = {'book_list': books}  # Create a context dictionary with book list
+      context = {'list_books': books}  # Create a context dictionary with book list
       return render(request, 'relationship_app/list_books.html', context)
 
 from django.views.generic.detail import DetailView
@@ -22,3 +22,4 @@ class LibraryDetailView(DetailView):
     context = super().get_context_data(**kwargs)  # Get default context data
     book = self.get_object()  # Retrieve the current book instance
     context['average_rating'] = book.get_average_rating() # Add average rating to context
+    return context
