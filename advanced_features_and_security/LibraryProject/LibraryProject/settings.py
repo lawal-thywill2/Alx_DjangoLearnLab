@@ -145,3 +145,8 @@ CSP_DEFAULT_SRC = ("'self'",)
 CSP_SCRIPT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", 'https://cdn.jsdelivr.net')  # allow Bootstrap CDN
 CSP_IMG_SRC = ("'self'", 'data:')
+
+# HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 year: instructs browsers to always use HTTPS
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Allows inclusion
