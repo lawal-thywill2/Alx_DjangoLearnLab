@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Librarian Dashboard</title>
+</head>
+<body>
+    <h1>Librarian Dashboard</h1>
+
+    <p>Welcome, {{ request.user.username }}!</p>
+    <p>Your role: Librarian</p>
+
+    <ul>
+        <li><a href="/admin-dashboard/">Go to Admin Dashboard</a></li>
+        <li><a href="/member-dashboard/">Go to Member Dashboard</a></li>
+        <li><a href="/logout/">Logout</a></li>
+    </ul>
+
+    <hr>
+    <p>Only users with the <strong>librarian</strong> role can see this page.</p>
+</body>
+</html>

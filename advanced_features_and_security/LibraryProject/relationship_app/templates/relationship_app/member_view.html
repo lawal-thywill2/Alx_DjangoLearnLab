@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Member Dashboard</title>
+</head>
+<body>
+    <h1>Member Dashboard</h1>
+
+    <p>Welcome, {{ request.user.username }}!</p>
+    <p>Your role: Member</p>
+
+    <ul>
+        <li><a href="/admin-dashboard/">Go to Admin Dashboard</a></li>
+        <li><a href="/librarian-dashboard/">Go to Librarian Dashboard</a></li>
+        <li><a href="/logout/">Logout</a></li>
+    </ul>
+
+    <hr>
+    <p>Only users with the <strong>member</strong> role can see this page.</p>
+</body>
+</html>
