@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-z^l@(#v1lqi8aba=-s)p!%=hb131zr0t58(y)&+p)0@yrnwy12
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yourdomain.com', 'localhost']  # Only trusted hosts
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bookshelf.apps.BookshelfConfig',
     'relationship_app.apps.RelationshipAppConfig',
+    'csp',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'LibraryProject.urls'
@@ -120,3 +122,26 @@ STATIC_URL = 'static/'
 LOGIN_REDIRECT_URL = '/accounts/profile/'
 LOGOUT_REDIRECT_URL = '/accounts/profile'
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
+
+# Browser security protections
+SECURE_BROWSER_XSS_FILTER = True           # Activates XSS filter in supported browsers
+SECURE_CONTENT_TYPE_NOSNIFF = True         # Prevents MIME type sniffing
+X_FRAME_OPTIONS = 'DENY'                   # Prevents clickjacking
+
+# Ensure cookies are sent only over HTTPS
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# Recommended for CSRF protection
+CSRF_COOKIE_HTTPONLY = True  # Optional: prevent JavaScript access to CSRF cookie
+SESSION_COOKIE_HTTPONLY = True
+
+# Optional: HTTPS redirect
+SECURE_SSL_REDIRECT = True
+
+
+# Example CSP settings to restrict external scripts/styles
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", 'https://cdn.jsdelivr.net')  # allow Bootstrap CDN
+CSP_IMG_SRC = ("'self'", 'data:')
