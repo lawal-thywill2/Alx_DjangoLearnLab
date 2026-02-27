@@ -1,7 +1,7 @@
 from django import forms
 from .models import Book
 
-class BookForm(forms.ModelForm):
+class ExampleForm(forms.ModelForm):
     # Optional: custom validation for title or description
     title = forms.CharField(
         max_length=200,
