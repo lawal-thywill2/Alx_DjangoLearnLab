@@ -29,17 +29,17 @@ def delete_book(request):
 # views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
-from .forms import BookForm
+from .forms import ExampleForm
 
 # Create a book safely
 def create_book(request):
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        form = ExampleForm(request.POST)
         if form.is_valid():  # Input validation occurs here
             form.save()
             return redirect('book-list')
     else:
-        form = BookForm()
+        form = ExampleForm()
     return render(request, 'bookshelf/form_example.html', {'form': form})
 
 # Safe search view
