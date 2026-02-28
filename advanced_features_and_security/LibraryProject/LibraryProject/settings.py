@@ -150,3 +150,4 @@ CSP_IMG_SRC = ("'self'", 'data:')
 SECURE_HSTS_SECONDS = 31536000  # 1 year: instructs browsers to always use HTTPS
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
 SECURE_HSTS_PRELOAD = True  # Allows inclusion
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # If behind a proxy/load balancer
