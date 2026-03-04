@@ -31,3 +31,11 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'bio', 'profile_picture', 'followers']
+        
+from .models import UserAccount
+
+class FollowSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = ['id', 'username', 'following', 'followers']
+        read_only_fields = ['followers']

@@ -15,3 +15,10 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+class UserAccount(AbstractUser):
+    # Users this user is following
+    following = models.ManyToManyField('self', symmetrical=False, related_name='followers', blank=True)
+
+    def __str__(self):
+        return self.username
