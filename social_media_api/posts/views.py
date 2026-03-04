@@ -67,7 +67,7 @@ class LikePostView(generics.GenericAPIView):
 
     def post(self, request, pk):
         try:
-            post = Post.objects.get(pk=pk)
+            post = generics.get_or_404(Post, pk=pk)
         except Post.DoesNotExist:
             return Response({"error": "Post not found"}, status=status.HTTP_404_NOT_FOUND)
 
