@@ -3,10 +3,10 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, permissions
 from django.contrib.auth import authenticate, get_user_model
 from rest_framework.authtoken.models import Token
-from .serializers import RegisterSerializer, LoginSerializer
+from .serializers import RegisterSerializer, LoginSerializer, UserSerializer
 
 User = get_user_model()
 
@@ -16,7 +16,7 @@ class RegisterView(APIView):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
-            token, created = Token.objects.get_or_create(user=user)
+            token= Token.objects.get_or_create(user=user)
             return Response({
                 "user": serializer.data,
                 "token": token.key
@@ -37,10 +37,18 @@ class LoginView(APIView):
         if not user:
             return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
-        token, created = Token.objects.get_or_create(user=user)
+        token = Token.objects.get_or_create(user=user)
 
         return Response({
             "token": token.key,
             "user_id": user.id,
             "username": user.username
         })
+
+
+class ProfileView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
