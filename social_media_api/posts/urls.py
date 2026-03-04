@@ -1,7 +1,6 @@
-# posts/urls.py
 from django.urls import path
-from . import views
+from .views import FeedView
 
 urlpatterns = [
-    path('feed/', views.feed, name='feed'),
+    path("feed/", FeedView.as_view(), name="feed"),
 ]
