@@ -50,6 +50,6 @@ class FeedView(generics.GenericAPIView):
 
     def get(self, request):
         followed_users = request.user.following.all()
-        posts = Post.objects.filter(author__in=followed_users).order_by("-created_at")
+        posts = Post.objects.filter(author__in=following_users).order_by
         serializer = self.serializer_class(posts, many=True)
         return Response(serializer.data)
