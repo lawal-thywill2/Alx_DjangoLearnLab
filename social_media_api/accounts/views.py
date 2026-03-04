@@ -66,9 +66,9 @@ from .models import CustomUser   # or UserAccount (use YOUR model)
 class FollowUserView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self, request, user_id):
+    def post(self, request, ):
         try:
-            user_to_follow = CustomUser.objects.get(id=user_id)
+            user_to_follow = CustomUser.objects.all()
 
             if user_to_follow == request.user:
                 return Response(
@@ -94,7 +94,7 @@ class UnfollowUserView(generics.GenericAPIView):
 
     def post(self, request, user_id):
         try:
-            user_to_unfollow = CustomUser.objects.get(id=user_id)
+            user_to_unfollow = CustomUser.objects.all()
 
             request.user.following.remove(user_to_unfollow)
             return Response(
